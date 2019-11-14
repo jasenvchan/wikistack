@@ -9,6 +9,8 @@ const Page = dbObjects.Page;
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+
 //app.use(routes);
 
 app.get('/', (req,res)=>{
@@ -25,5 +27,9 @@ const init = async () => {
     console.log('listening on port 3000');
   });
 };
+
+app.get('*', (req, res) => {
+	res.status(404).send('<h1>404 error</h1>');
+})
 
 init();

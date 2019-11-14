@@ -1,6 +1,12 @@
 const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/wikistack');
 
+let editedSlug = (title) => {
+  let editedSlug = title.replace(' ', '_');
+  editedSlug = editedSlug.replace(/[^\w]*/g,'');
+  return editedSlug;
+}
+
 db.authenticate().then(() => {
   console.log('connected to the database');
 });
@@ -19,6 +25,10 @@ const User = db.define('user', {
     allowNull: false,
     validate: { isEmail: true },
   },
+});
+
+Page.beforeCreate((pageInstance, options) => {
+  pageInstance.slug = editedSlug(pageInstance.title);
 });
 
 module.exports = { db, Page, User };
