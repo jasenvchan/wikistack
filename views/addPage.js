@@ -14,9 +14,7 @@ module.exports = () =>
       </div>
 
       <div class="form-group">
-        <label for="author-email" class="col-sm-2 control-label"
-          >Page Author Email</label
-        >
+        <label for="author-email" class="col-sm-2 control-label">Page Author Email</label>
         <div class="col-sm-10">
           <input
             id="author-email"

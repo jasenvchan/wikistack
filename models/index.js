@@ -31,4 +31,6 @@ Page.beforeCreate((pageInstance, options) => {
   pageInstance.slug = editedSlug(pageInstance.title);
 });
 
+Page.belongsTo(User, { as: 'author' });
+
 module.exports = { db, Page, User };
